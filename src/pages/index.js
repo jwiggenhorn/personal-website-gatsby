@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
 import Vex from 'vexflow'
-import { buildToneRowStrings } from './toneRowGenerator'
+import { buildToneRowStrings } from '../utils/toneRowGenerator'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
 
