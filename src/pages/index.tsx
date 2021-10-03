@@ -5,13 +5,13 @@ import { buildToneRowStrings } from '../utils/toneRowGenerator'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
 
-function buildMeasure(notes) {
+function buildMeasure(notes: string) {
 	const vf = new Vex.Flow.Factory({ renderer: { elementId: 'staff' } })
 	const score = vf.EasyScore()
 	const system = vf.System()
 	system
 		.addStave({
-			voices: [score.voice(score.notes(notes))],
+			voices: [score.voice(score.notes(notes), {})],
 		})
 		.addClef('treble')
 
@@ -19,14 +19,14 @@ function buildMeasure(notes) {
 }
 
 function IndexPage() {
-  const [octave, setOctave] = React.useState(4)
+	const [octave, setOctave] = React.useState(4)
 
-  function handleChange(event) {
-    setOctave(event.target.value)
-  }
+	// function handleChange(event) {
+	// 	setOctave(event.target.value)
+	// }
 
 	React.useEffect(() => {
-	  const toneRow = buildToneRowStrings(octave)
+		const toneRow = buildToneRowStrings(octave)
 		toneRow.forEach(measure => buildMeasure(measure))
 	}, [])
 
@@ -34,7 +34,7 @@ function IndexPage() {
 		<Layout>
 			<Seo title="Home" />
 			<div id="staff" />
-      {/* Octave: <input type="number" min="4" max="5" value={octave} onChange={handleChange}/> */}
+			{/* Octave: <input type="number" min="4" max="5" value={octave} onChange={handleChange}/> */}
 			<p>
 				<Link to="/page-2/">Go to page 2</Link> <br />
 			</p>
